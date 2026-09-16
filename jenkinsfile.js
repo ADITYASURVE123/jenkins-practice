@@ -52,7 +52,7 @@ pipeline {
                     credentialsId: 'aw-credential-id'
                 ]]) {
                     sh 'aws eks update-kubeconfig --region ap-south-1 --name example'
-                    sh 'kubectl get nodes'
+                    sh 'kubectl cluster-info'
                 }
             }
         }
