@@ -51,8 +51,10 @@ pipeline {
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aw-credential-id'
                 ]]) {
-                    sh 'aws eks update-kubeconfig --region ap-south-1 --name example'
-                    sh 'kubectl cluster-info'
+                    sh '''
+                        aws eks update-kubeconfig --region ap-south-1 --name example
+                        aws eks describe-cluster --name example --region ap-south-1 --query "cluster.status"
+                    '''
                 }
             }
         }
